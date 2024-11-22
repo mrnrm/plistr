@@ -185,14 +185,32 @@ impl eframe::App for Program {
                                 ui.allocate_ui_with_layout(egui::vec2(month_width, 111.0), layout, |ui| {
                                     ui.heading("Matthew Norman");
                                     ui.weak("Developer");
+                                    ui.separator();
+                                    ui.label("As our developer, Matthew is responsible for the actual implementation of Plistr. He writes the code that runs not just the app, but also this very website.");
+                                    ui.separator();
+                                    ui.heading("Responsibilities:");
+                                    ui.strong("Programming");
+                                    ui.strong("Development");
                                 });
                                 ui.allocate_ui_with_layout(egui::vec2(month_width, 111.0), layout, |ui| {
                                     ui.heading("Sara Quintana");
                                     ui.weak("Designer");
+                                    ui.separator();
+                                    ui.label("As our designer, Sara is responsible for designing Plistr. Everything from the application interface to the user experience falls under her purview.");
+                                    ui.separator();
+                                    ui.heading("Responsibilities:");
+                                    ui.strong("UI/UX Design");
+                                    ui.strong("Wireframing");
                                 });
                                 ui.allocate_ui_with_layout(egui::vec2(month_width, 111.0), layout, |ui| {
                                     ui.heading("Snailey Dol");
                                     ui.weak("Researcher");
+                                    ui.separator();
+                                    ui.label("As our researcher, Snailey is responsible for information collection. Anything from running user tests, to analyzing the efficacy of the studying methodologies we support.");
+                                    ui.separator();
+                                    ui.heading("Responsibilities:");
+                                    ui.strong("User Testing");
+                                    ui.strong("Efficacy Analysis");
                                 });
                             });
                         });
@@ -259,6 +277,7 @@ impl eframe::App for Program {
                         }.show(ui, |ui| {
                             ui.add_space(29.0);
                             ui.heading("Work Breakdown Structure");
+                            ui.separator();
                             if ui.link("View PDF ⎆").clicked() {
                                 ctx.open_url(egui::OpenUrl::new_tab(WBS_URL));
                             }
@@ -269,6 +288,7 @@ impl eframe::App for Program {
                             ui.label(WBS_DESC);
                             ui.add_space(29.0);
                             ui.heading("Wireframes (Rough Prototype)");
+                            ui.separator();
                             if ui.link("View PDF ⎆").clicked() {
                                 ctx.open_url(egui::OpenUrl::new_tab(WIREFRAMES_URL));
                             }
@@ -279,6 +299,7 @@ impl eframe::App for Program {
                             ui.label(ROUGH_PROTO_DESC);
                             ui.add_space(29.0);
                             ui.heading("First Prototype");
+                            ui.separator();
                             if ui.link("View PDF ⎆").clicked() {
                                 ctx.open_url(egui::OpenUrl::new_tab(PROTOTYPE_URL));
                             }
@@ -289,6 +310,7 @@ impl eframe::App for Program {
                             ui.label(FIRST_PROTO_DESC);
                             ui.add_space(29.0);
                             ui.heading("...And more!");
+                            ui.separator();
                             ui.horizontal_wrapped(|ui| {
                                 ui.label("Because this is an ongoing project, more work will need to be done in the future. We plan on providing updates with deliverables here and on the discussion boards linked on our ");
                                 if ui.link("Contact page").clicked() {
@@ -386,9 +408,9 @@ fn apply_light_mode(visuals: &mut egui::Visuals) {
 const APP_NAME: &str = "Plistr";
 const TAGLINE: &str = "An audio-based social networking platform";
 const DESCRIPTION: &str = "With a focus on productivity, Plistr aims to be an all-in-one studying/meditation tool for students, professionals, and anyone who wants to get some work done.";
-const WBS_URL: &str = "https://raw.githubusercontent.com/";
-const WIREFRAMES_URL: &str = "https://raw.githubusercontent.com/";
-const PROTOTYPE_URL: &str = "https://raw.githubusercontent.com/";
+const WBS_URL: &str = "https://github.com/mrnrm/plistr/blob/master/assets/wbs.pdf";
+const WIREFRAMES_URL: &str = "https://github.com/mrnrm/plistr/blob/master/assets/wireframes.pdf";
+const PROTOTYPE_URL: &str = "https://github.com/mrnrm/plistr/blob/master/assets/first_prototype.pdf";
 const DISCUSSIONS_URL: &str = "https://github.com/mrnrm/plistr/discussions";
 const WBS_DESC: &str = "An overview of all work that must be done to see our project through to completion. This documents details the categorization of tasks and the steps required to see them through.";
 const ROUGH_PROTO_DESC: &str = "A set of wireframes that visually explain the initial idea for the project.";
