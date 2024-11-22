@@ -81,9 +81,9 @@ impl eframe::App for Program {
                     if ui.button("About Us").clicked() {
                         self.page = Page::AboutUs;
                     }
-                    if ui.button("Timeline").clicked() {
-                        self.page = Page::Timeline;
-                    }
+                    // if ui.button("Timeline").clicked() {
+                    //     self.page = Page::Timeline;
+                    // }
                     if ui.button("Deliverables").clicked() {
                         self.page = Page::Deliverables;
                     }
@@ -117,8 +117,11 @@ impl eframe::App for Program {
                                 }
                             }
                             Page::AboutUs => {
-                                if ui.button("Next: Timeline").clicked() {
-                                    self.page = Page::Timeline;
+                                // if ui.button("Next: Timeline").clicked() {
+                                //     self.page = Page::Timeline;
+                                // }
+                                if ui.button("Next: Deliverables").clicked() {
+                                    self.page = Page::Deliverables;
                                 }
                             }
                             Page::Timeline => {
@@ -180,13 +183,16 @@ impl eframe::App for Program {
                                 let month_width = ui.available_size_before_wrap().x / 3.0;
                                 let layout = egui::Layout::top_down(egui::Align::Center);
                                 ui.allocate_ui_with_layout(egui::vec2(month_width, 111.0), layout, |ui| {
-                                    ui.heading("MN");
+                                    ui.heading("Matthew Norman");
+                                    ui.weak("Developer");
                                 });
                                 ui.allocate_ui_with_layout(egui::vec2(month_width, 111.0), layout, |ui| {
-                                    ui.heading("SQ");
+                                    ui.heading("Sara Quintana");
+                                    ui.weak("Designer");
                                 });
                                 ui.allocate_ui_with_layout(egui::vec2(month_width, 111.0), layout, |ui| {
-                                    ui.heading("SD");
+                                    ui.heading("Snailey Dol");
+                                    ui.weak("Researcher");
                                 });
                             });
                         });
@@ -226,12 +232,20 @@ impl eframe::App for Program {
                                 ui.heading("9/10/24").on_hover_ui(|ui| {
                                     ui.label("Initial ideation phase");
                                 });
+                                ui.add_space(width * 0.5 * 0.3);
+                                ui.heading("11/8/24").on_hover_ui(|ui| {
+                                    ui.label("Rough prototype commpleted");
+                                });
                             });
                             ui.separator();
                             ui.horizontal(|ui| {
                                 ui.add_space(width * 0.25 * 0.75);
                                 ui.heading("9/19/24").on_hover_ui(|ui| {
                                     ui.label("Initial ideation");
+                                });
+                                ui.add_space(width * 0.5 * 0.3);
+                                ui.heading("11/15/24").on_hover_ui(|ui| {
+                                    ui.label("First prototype commpleted");
                                 });
                             });
                         });
@@ -248,16 +262,38 @@ impl eframe::App for Program {
                             if ui.link("View PDF ⎆").clicked() {
                                 ctx.open_url(egui::OpenUrl::new_tab(WBS_URL));
                             }
+                            ui.horizontal(|ui| {
+                                ui.strong("COMPLETION DATE: ");
+                                ui.label("10/25/2024");
+                            });
+                            ui.label(WBS_DESC);
                             ui.add_space(29.0);
-                            ui.heading("Wireframes");
+                            ui.heading("Wireframes (Rough Prototype)");
                             if ui.link("View PDF ⎆").clicked() {
                                 ctx.open_url(egui::OpenUrl::new_tab(WIREFRAMES_URL));
                             }
+                            ui.horizontal(|ui| {
+                                ui.strong("COMPLETION DATE: ");
+                                ui.label("11/8/2024");
+                            });
+                            ui.label(ROUGH_PROTO_DESC);
                             ui.add_space(29.0);
                             ui.heading("First Prototype");
                             if ui.link("View PDF ⎆").clicked() {
                                 ctx.open_url(egui::OpenUrl::new_tab(PROTOTYPE_URL));
                             }
+                            ui.horizontal(|ui| {
+                                ui.strong("COMPLETION DATE: ");
+                                ui.label("11/15/2024");
+                            });
+                            ui.label(FIRST_PROTO_DESC);
+                            ui.add_space(29.0);
+                            ui.heading("...And more!");
+                            ui.label("Because this is an ongoing project, more work will need to be done in the future. We plan on providing updates with deliverables here and on the discussion boards linked on our ");
+                            if ui.link("Contact page").clicked() {
+                                self.page = Page::Contact;
+                            }
+                            ui.label(".");
                         });
                     }
                     Page::Contact => {
@@ -269,6 +305,9 @@ impl eframe::App for Program {
                         }.show(ui, |ui| {
                             ui.add_space(29.0);
                             ui.heading("Discussions");
+                            if ui.link("Open discussion boards in a new tab").clicked() {
+                                ctx.open_url(egui::OpenUrl::new_tab(DISCUSSIONS_URL));
+                            }
                         });
                     }
                 }
@@ -334,3 +373,7 @@ const DESCRIPTION: &str = "With a focus on productivity, Plistr aims to be an al
 const WBS_URL: &str = "https://raw.githubusercontent.com/";
 const WIREFRAMES_URL: &str = "https://raw.githubusercontent.com/";
 const PROTOTYPE_URL: &str = "https://raw.githubusercontent.com/";
+const DISCUSSIONS_URL: &str = "https://github.com/mrnrm/plistr/discussions";
+const WBS_DESC: &str = "";
+const ROUGH_PROTO_DESC: &str = "";
+const FIRST_PROTO_DESC: &str = "";
