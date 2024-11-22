@@ -289,11 +289,13 @@ impl eframe::App for Program {
                             ui.label(FIRST_PROTO_DESC);
                             ui.add_space(29.0);
                             ui.heading("...And more!");
-                            ui.label("Because this is an ongoing project, more work will need to be done in the future. We plan on providing updates with deliverables here and on the discussion boards linked on our ");
-                            if ui.link("Contact page").clicked() {
-                                self.page = Page::Contact;
-                            }
-                            ui.label(".");
+                            ui.horizontal_wrapped(|ui| {
+                                ui.label("Because this is an ongoing project, more work will need to be done in the future. We plan on providing updates with deliverables here and on the discussion boards linked on our ");
+                                if ui.link("Contact page").clicked() {
+                                    self.page = Page::Contact;
+                                }
+                                ui.label(".");
+                            });
                         });
                     }
                     Page::Contact => {
@@ -308,6 +310,7 @@ impl eframe::App for Program {
                             if ui.link("Open discussion boards in a new tab").clicked() {
                                 ctx.open_url(egui::OpenUrl::new_tab(DISCUSSIONS_URL));
                             }
+                            ui.label("This site is heavily integrate with GitHub for hosting, content delivery, and communications. We have set up a discussion forum at the link above where you can view updates, ask questions, and chat with us.");
                         });
                     }
                 }
@@ -321,6 +324,19 @@ impl Program {
         let mut visuals = egui::Visuals::light();
         apply_light_mode(&mut visuals);
         cc.egui_ctx.set_visuals(visuals);
+        cc.egui_ctx.style_mut(|s| {
+            use egui::FontFamily::Proportional;
+            use egui::FontId;
+            use egui::TextStyle::*;
+            
+            s.text_styles = [
+                (Heading, FontId::new(37.0, Proportional)),
+                (Body, FontId::new(29.0, Proportional)),
+                (Monospace, FontId::new(29.0, Proportional)),
+                (Button, FontId::new(23.0, Proportional)),
+                (Small, FontId::new(19.0, Proportional)),
+              ].into();
+        });
 
         Self {
             page: Page::Home,
@@ -335,16 +351,16 @@ impl Program {
     }
 
     fn show_home_links(&mut self, ui: &mut egui::Ui) {
-        if ui.link(egui::RichText::new("Timeline").size(37.0)).clicked() {
-            self.page = Page::Timeline;
+        // if ui.link(egui::RichText::new("Timeline").size(37.0)).clicked() {
+        //     self.page = Page::Timeline;
+        // }
+        // ui.add_space(29.0);
+        if ui.link(egui::RichText::new("About Us").size(37.0)).clicked() {
+            self.page = Page::AboutUs;
         }
         ui.add_space(29.0);
         if ui.link(egui::RichText::new("Deliverables").size(37.0)).clicked() {
             self.page = Page::Deliverables;
-        }
-        ui.add_space(29.0);
-        if ui.link(egui::RichText::new("About Us").size(37.0)).clicked() {
-            self.page = Page::AboutUs;
         }
     }
 }
@@ -374,6 +390,6 @@ const WBS_URL: &str = "https://raw.githubusercontent.com/";
 const WIREFRAMES_URL: &str = "https://raw.githubusercontent.com/";
 const PROTOTYPE_URL: &str = "https://raw.githubusercontent.com/";
 const DISCUSSIONS_URL: &str = "https://github.com/mrnrm/plistr/discussions";
-const WBS_DESC: &str = "";
-const ROUGH_PROTO_DESC: &str = "";
-const FIRST_PROTO_DESC: &str = "";
+const WBS_DESC: &str = "An overview of all work that must be done to see our project through to completion. This documents details the categorization of tasks and the steps required to see them through.";
+const ROUGH_PROTO_DESC: &str = "A set of wireframes that visually explain the initial idea for the project.";
+const FIRST_PROTO_DESC: &str = "An interactive set of high fidelity wireframes detailing all the routes a user could take as s/he navigates Plistr.";
