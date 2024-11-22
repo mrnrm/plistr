@@ -384,6 +384,10 @@ impl Program {
         if ui.link(egui::RichText::new("Deliverables").size(37.0)).clicked() {
             self.page = Page::Deliverables;
         }
+        ui.add_space(29.0);
+        if ui.link(egui::RichText::new("Contact").size(37.0)).clicked() {
+            self.page = Page::Contact;
+        }
     }
 }
 
